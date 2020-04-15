@@ -10,6 +10,6 @@ import java.util.ArrayList;
 public class Cluster {
 
   Sample s;
-  ArrayList<Sample> arr= new ArrayList<Sample>[];
+  ArrayList<Sample> c;
 
 }
