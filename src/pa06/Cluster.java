@@ -1,4 +1,5 @@
 package pa06;
+import java.util.ArrayList;
 
 /**
  * A cluster is a cluster point (which is itself a sample)
@@ -7,5 +8,8 @@ package pa06;
  *
  */
 public class Cluster {
+
+  Sample s;
+  ArrayList<Sample> arr= new ArrayList<Sample>[];
 
 }
