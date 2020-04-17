@@ -6,24 +6,26 @@ import java.io.File;
 public class KMeans {
 	static Cluster[] clusters;
 	Cluster originalData;
-	
-	
-	
-	
+
+
+
+
 	public KMeans() {
 		// TODO Auto-generated constructor stub
-		
+
 	}
-	
+
 	public void readFile(File file){
 		Scanner scan=new Scanner(file);
 		while(scan.hasNextLine()){
 			while(scan.hasNextDouble()){
+				ArrayList<double> temp=new ArrayList<double>();
+				temp.add(scan.nextDouble());
 				
 			}
 		}
 	}
-	
+
 	public static void Main(String[] args) throws FileNotFoundException{
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
@@ -33,8 +35,8 @@ public class KMeans {
 		clusters=new Cluster[k];
 		File file= new File(fileName);
 		Scanner scan=new Scanner(file);
-		
-		
+
+
 	}
 
 }
