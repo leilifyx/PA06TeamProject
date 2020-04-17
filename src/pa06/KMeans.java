@@ -9,19 +9,30 @@ public class KMeans {
 	
 	
 	
+	
 	public KMeans() {
 		// TODO Auto-generated constructor stub
 		
 	}
 	
+	public void readFile(File file){
+		Scanner scan=new Scanner(file);
+		while(scan.hasNextLine()){
+			while(scan.hasNextDouble()){
+				
+			}
+		}
+	}
+	
 	public static void Main(String[] args) throws FileNotFoundException{
-		Scanner scan=new Scanner(System.in);
+		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
-		String fileName=scan.nextLine();
+		String fileName=scanning.nextLine();
 		System.out.println("How many clusters?");
-		int k=scan.nextInt();
+		int k=scanning.nextInt();
 		clusters=new Cluster[k];
 		File file= new File(fileName);
+		Scanner scan=new Scanner(file);
 		
 		
 	}
