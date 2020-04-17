@@ -29,6 +29,7 @@ public class KMeans {
 					originalData.addSample(tempSample);
 					break;	
 			}
+				
 			
 			
 			}
