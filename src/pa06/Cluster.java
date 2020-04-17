@@ -9,7 +9,21 @@ import java.util.ArrayList;
  */
 public class Cluster {
 
-  Sample s;
-  ArrayList<Sample> c;
-
+  Sample clusterPoint;
+  ArrayList<Sample> samples;
+  
+  public Cluster(){
+	  clusterPoint=null;
+	  samples=new ArrayList<Sample>();
+  }
+  
+  public String toString(){
+	  String clusterString="cluster point is: " + clusterPoint.toString();
+	  clusterString+="\nsamples are:\n";
+	  for(int i=0;i<samples.size();i++){
+		  clusterString+=samples.get(i).toString()+"\n";
+	  }
+	  return clusterString;
+  }
+ 
 }
