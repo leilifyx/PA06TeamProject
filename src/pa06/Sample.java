@@ -19,6 +19,10 @@ public class Sample {
 		
 	}
 	
+	public Sample(ArrayList<Double> sample){
+		this.sample=sample;
+	}
+	
 	public String toString(){
 		String toPrint="{";
 		for (int i=0; i<this.sample.size(); i++) {

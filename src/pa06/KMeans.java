@@ -2,10 +2,11 @@ package pa06;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.util.ArrayList;
 
 public class KMeans {
 	static Cluster[] clusters;
-	Cluster originalData;
+	static Cluster originalData;
 
 
 
@@ -15,18 +16,26 @@ public class KMeans {
 
 	}
 
-	public void readFile(File file){
+	public static void readFile(File file) throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
 		while(scan.hasNextLine()){
+			ArrayList<Double> temp=new ArrayList<Double>();
+			
 			while(scan.hasNextDouble()){
-				ArrayList<double> temp=new ArrayList<double>();
 				temp.add(scan.nextDouble());
-				
+				if(scan.next().charAt(0)=='\n'){
+					Sample tempSample=new Sample(temp);
+					System.out.println(tempSample);
+					originalData.addSample(tempSample);
+					break;	
+			}
+			
+			
 			}
 		}
 	}
 
-	public static void Main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args) throws FileNotFoundException{
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
 		String fileName=scanning.nextLine();
@@ -34,7 +43,9 @@ public class KMeans {
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
 		File file= new File(fileName);
-		Scanner scan=new Scanner(file);
+		readFile(file);
+		System.out.println(originalData);
+		
 
 
 	}

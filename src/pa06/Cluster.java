@@ -17,6 +17,10 @@ public class Cluster {
 	  samples=new ArrayList<Sample>();
   }
   
+  public void addSample(Sample sample){
+	  samples.add(sample);
+  }
+  
   public String toString(){
 	  String clusterString="cluster point is: " + clusterPoint.toString();
 	  clusterString+="\nsamples are:\n";
