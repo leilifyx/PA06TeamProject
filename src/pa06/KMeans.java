@@ -20,18 +20,21 @@ public class KMeans {
 		Scanner scan=new Scanner(file);
 		while(scan.hasNextLine()){
 			ArrayList<Double> temp=new ArrayList<Double>();
-			
+
 			while(scan.hasNextDouble()){
-				temp.add(scan.nextDouble());
+				Double td = scan.nextDouble();
+				System.out.println("next double" + td);
+				temp.add(td);
 				if(scan.next().charAt(0)=='\n'){
+					Syste.out.println("new line read.");
 					Sample tempSample=new Sample(temp);
 					System.out.println(tempSample);
 					originalData.addSample(tempSample);
-					break;	
+					break;
 			}
-				
-			
-			
+
+
+
 			}
 		}
 	}
@@ -46,7 +49,7 @@ public class KMeans {
 		File file= new File(fileName);
 		readFile(file);
 		System.out.println(originalData);
-		
+
 
 
 	}
