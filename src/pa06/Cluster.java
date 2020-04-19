@@ -27,7 +27,7 @@ public class Cluster {
   
   public String toString(){
 	 String clusterString="\n\ncluster point is: " + clusterPoint.toString();
-	 clusterString="\nsamples are:\n";
+	 clusterString+="\nsamples are:\n";
 	  for(int i=0;i<samples.size();i++){
 		  clusterString+=samples.get(i).toString()+"\n";
 	  }

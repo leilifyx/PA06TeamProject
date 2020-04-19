@@ -154,10 +154,13 @@ public class KMeans {
 		System.out.println("How many clusters?");
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
+		originalData=new Cluster();
 		
 		File file= new File(fileName);
 		readFile2(file);
-		originalData=new Cluster();
+		
+		
+		
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);
 		System.out.println(originalData);
