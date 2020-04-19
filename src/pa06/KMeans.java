@@ -99,6 +99,16 @@ public class KMeans {
 		}
 	}
 	
+	public static int getNumDimensions(File file)throws FileNotFoundException{
+		Scanner scan=new Scanner(file);
+		ArrayList<Double> temp=new ArrayList<Double>();
+		if(scan.hasNextLine()){
+			String tempLine=scan.nextLine();
+			addDoublesToArray(tempLine, temp);	
+		}
+		return temp.size();
+	}
+	
 	public static void addDoublesToArray(String tempLine, ArrayList<Double> temp){
 		while(tempLine.length()>0){
 			
@@ -152,7 +162,7 @@ public class KMeans {
 		File file= new File(fileName);
 		readFile2(file);
 		
-		
+		System.out.println("dimenstions= "+getNumDimensions(file));
 		
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);
