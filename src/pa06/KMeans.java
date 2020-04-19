@@ -15,18 +15,81 @@ public class KMeans {
 		// TODO Auto-generated constructor stub
 
 	}
+	
+	public static void readFile2(File file) throws FileNotFoundException{
+		Scanner scan=new Scanner(file);
+		while(scan.hasNextLine()){
+			String tempLine=scan.nextLine();
+			System.out.println("\n\ntempLine is " + tempLine);
+			System.out.println("\nin first while");
+			ArrayList<Double> temp=new ArrayList<Double>();
+			for(int l=0; l<temp.size(); l++){
+				if(l==0){System.out.println("printing temp");}
+				System.out.print(temp.get(l)+" ");
+			}
+			
+			while(tempLine.length()>0){
+				if((int)tempLine.charAt(0)>=48 && (int)tempLine.charAt(0)<=57)//ascii between 48 and 57 are digits 0-9
+				{
+					int isNum=1;
+					while(isNum<tempLine.length() && ((int)tempLine.charAt(isNum)>=48 &&(int)tempLine.charAt(isNum)<=57)){
+						isNum++;
+					}
+					String tempDoubleString=(tempLine.substring(0,isNum));
+					System.out.println("IsNum= " + isNum);
+					int tempDouble=0;
+					for (int t=0; t<isNum; t++){
+						tempDouble+=((int)tempDoubleString.charAt(t)-48)*Math.pow(10, isNum-t-1);
+					}
+					temp.add((double)(tempDouble));
+					for(int l=0; l<temp.size(); l++){
+						if(l==0){System.out.println("printing temp");}
+						System.out.print(temp.get(l)+" ");
+					}
+					
+					
+					tempLine=tempLine.substring(isNum,tempLine.length());
+					System.out.println("now tempLine is "+ tempLine);
+				}
+				else if(tempLine.charAt(0)=='\n'){
+					System.out.println("in if");
+					Sample tempSample=new Sample(temp);
+					System.out.println("Saple= " + tempSample);
+					originalData.addSample(tempSample);
+					break;
+				}
+				else{
+					tempLine=tempLine.substring(1,tempLine.length());
+				}
+			}
+			}
+		
+	}
 
 	public static void readFile(File file) throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
+		System.out.println("in method");
 		while(scan.hasNextLine()){
+			String tempLine=scan.nextLine();
+			System.out.println(tempLine);
+			System.out.println("in first while");
 			ArrayList<Double> temp=new ArrayList<Double>();
+			for(int l=0; l<temp.size(); l++){
+				System.out.println("printing temp");
+				System.out.print(temp.get(l)+" ");
+			}
 
 			while(scan.hasNextDouble()){
-				Double td = scan.nextDouble();
-				System.out.println("next double" + td);
+				Double td = scan.nextDouble(); //td stands for tempDouble
+				System.out.println("next double " + td);
 				temp.add(td);
+				for(int l=0; l<temp.size(); l++){
+					if(l==0){System.out.println("printing temp");}
+					System.out.print(temp.get(l)+" ");
+				}
 				if(scan.next().charAt(0)=='\n'){
-					Syste.out.println("new line read.");
+					System.out.println("in if");
+					System.out.println("new line read.");
 					Sample tempSample=new Sample(temp);
 					System.out.println(tempSample);
 					originalData.addSample(tempSample);
@@ -47,7 +110,7 @@ public class KMeans {
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
 		File file= new File(fileName);
-		readFile(file);
+		readFile2(file);
 		System.out.println(originalData);
 
 
