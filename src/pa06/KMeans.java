@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class KMeans {
 	static Cluster[] clusters;
 	static Cluster originalData;
-	public int dimension;
+	
 
 
 	public KMeans() {
@@ -160,8 +160,8 @@ public class KMeans {
 
 		File file= new File(fileName);
 		readFile2(file);
-		this.dimension=getNumDimensions(file);
-		System.out.println("dimenstions= "+dimension;
+		
+		
 
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);

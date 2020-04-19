@@ -35,9 +35,9 @@ public class Cluster {
 	  return clusterString;
   }
 
-  public void createClusterPoint(){
+  public void createClusterPoint(int dimensions){
     Random rand=new Random();
-    double[] point=new double[dimension];
+    double[] point=new double[dimensions];
     for(int i=0; i<point.length; i++){
       point[i]=rand.nextDouble();
     }
