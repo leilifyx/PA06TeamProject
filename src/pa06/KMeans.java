@@ -16,7 +16,7 @@ public class KMeans {
 		
 
 	}
-	
+
 	public static void readFile2(File file) throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
 		while(scan.hasNextLine()){
@@ -28,7 +28,7 @@ public class KMeans {
 				if(l==0){System.out.println("printing temp");}
 				System.out.print(temp.get(l)+" ");
 			}
-			
+
 			while(tempLine.length()>0){
 				if((int)tempLine.charAt(0)>=48 && (int)tempLine.charAt(0)<=57)//ascii between 48 and 57 are digits 0-9
 				{
@@ -47,8 +47,7 @@ public class KMeans {
 						if(l==0){System.out.println("printing temp");}
 						System.out.print(temp.get(l)+" ");
 					}
-					
-					
+
 					tempLine=tempLine.substring(isNum,tempLine.length());
 					System.out.println("now tempLine is "+ tempLine);
 				}
@@ -61,7 +60,7 @@ public class KMeans {
 			System.out.println("Sample= " + tempSample);
 			originalData.addSample(tempSample);
 			}
-		
+
 	}
 
 	public static void readFile(File file) throws FileNotFoundException{
