@@ -13,6 +13,7 @@ public class KMeans {
 
 	public KMeans() {
 		// TODO Auto-generated constructor stub
+		
 
 	}
 	
@@ -51,15 +52,6 @@ public class KMeans {
 					tempLine=tempLine.substring(isNum,tempLine.length());
 					System.out.println("now tempLine is "+ tempLine);
 				}
-				/*
-				else if(tempLine.charAt(0)=='\n'){
-					System.out.println("in if");
-					Sample tempSample=new Sample(temp);
-					System.out.println("Sample= " + tempSample);
-					originalData.addSample(tempSample);
-					break;
-				}
-				*/
 				else{
 					tempLine=tempLine.substring(1,tempLine.length());
 				}
@@ -67,7 +59,7 @@ public class KMeans {
 			System.out.println("in if");
 			Sample tempSample=new Sample(temp);
 			System.out.println("Sample= " + tempSample);
-			//originalData.addSample(tempSample);
+			originalData.addSample(tempSample);
 			}
 		
 	}
@@ -115,9 +107,10 @@ public class KMeans {
 		System.out.println("How many clusters?");
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
+		originalData=new Cluster();
 		File file= new File(fileName);
 		readFile2(file);
-		//System.out.println(originalData);
+		System.out.println(originalData);
 
 
 
