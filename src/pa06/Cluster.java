@@ -11,16 +11,16 @@ public class Cluster {
 
   Sample clusterPoint;
   ArrayList<Sample> samples;
-  
+
   public Cluster(){
 	  clusterPoint=null;
 	  samples=new ArrayList<Sample>();
   }
-  
+
   public void addSample(Sample sample){
 	  samples.add(sample);
   }
-  
+
   public String toString(){
 	  String clusterString="cluster point is: " + clusterPoint.toString();
 	  clusterString+="\nsamples are:\n";
@@ -29,5 +29,5 @@ public class Cluster {
 	  }
 	  return clusterString;
   }
- 
+
 }
