@@ -156,6 +156,8 @@ public class KMeans {
 		System.out.println("How many clusters?");
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
+		
+		
 		originalData=new Cluster();
 
 		File file= new File(fileName);
@@ -166,6 +168,15 @@ public class KMeans {
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);
 		System.out.println(originalData);
+		
+		int dataDimensions=(getNumDimensions(file));
+		
+		for(int j=0; j<k; j++){
+			clusters[j].createClusterPoint(dataDimensions);
+			
+		}
+		
+		System.out.println("\n\nclusters= "+ clusters);
 
 
 
