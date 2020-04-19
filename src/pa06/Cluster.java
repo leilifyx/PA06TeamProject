@@ -1,5 +1,6 @@
 package pa06;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A cluster is a cluster point (which is itself a sample)
@@ -32,6 +33,16 @@ public class Cluster {
 		  clusterString+=samples.get(i).toString()+"\n";
 	  }
 	  return clusterString;
+  }
+
+  public void createClusterPoint(){
+    Random rand=new Random();
+    double[] point=new double[dimension];
+    for(int i=0; i<point.length; i++){
+      point[i]=rand.nextDouble();
+    }
+    Sample actualpoint=new Sample(point);
+    this.clusterPoint=actualpoint;
   }
 
 }
