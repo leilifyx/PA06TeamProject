@@ -21,9 +21,13 @@ public class Cluster {
 	  samples.add(sample);
   }
 
+  public void setClusterPoint(Sample sample){
+	  clusterPoint=sample;
+  }
+
   public String toString(){
-	  String clusterString="cluster point is: " + clusterPoint.toString();
-	  clusterString+="\nsamples are:\n";
+	 String clusterString="\n\ncluster point is: " + clusterPoint.toString();
+	 clusterString="\nsamples are:\n";
 	  for(int i=0;i<samples.size();i++){
 		  clusterString+=samples.get(i).toString()+"\n";
 	  }
