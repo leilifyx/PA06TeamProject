@@ -109,20 +109,14 @@ public class KMeans {
 					isNum++;
 				}
 				String tempDoubleString=(tempLine.substring(0,isNum));
-				System.out.println("IsNum= " + isNum);
+				
 				int tempDouble=0;
 				for (int t=0; t<isNum; t++){
 					tempDouble+=((int)tempDoubleString.charAt(t)-48)*Math.pow(10, isNum-t-1);
 				}
 				temp.add((double)(tempDouble));
-				for(int l=0; l<temp.size(); l++){
-					if(l==0){System.out.println("printing temp");}
-					System.out.print(temp.get(l)+" ");
-				}
-				
-				
 				tempLine=tempLine.substring(isNum,tempLine.length());
-				System.out.println("now tempLine is "+ tempLine);
+				
 			}
 			else{
 				tempLine=tempLine.substring(1,tempLine.length());
@@ -137,7 +131,7 @@ public class KMeans {
 			String tempLine=scan.nextLine();
 			ArrayList<Double> temp=new ArrayList<Double>();
 			addDoublesToArray(tempLine, temp);
-			for(int z=0;z<originArray.size(); z++){
+			for(int z=0;z<temp.size(); z++){
 				originArray.add((double)0);
 			}	
 		}
