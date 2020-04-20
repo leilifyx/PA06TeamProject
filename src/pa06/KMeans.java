@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 
-public class KMeans {
+public class KMeans{
 	static Cluster[] clusters;
 	static Cluster originalData;
 	
@@ -36,8 +36,6 @@ public class KMeans {
 			}
 
 	}
-
-	
 
 	public static int getNumDimensions(File file)throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
@@ -90,6 +88,33 @@ public class KMeans {
 
 	}
 
+	public static Cluster findNearestSamplePoint(Sample sample, Cluster[] clusters){
+		Cluster tempCluster=clusters[0];
+		double Distance=0;
+		for(int i=0; i<clusters.length; i++){
+			double tempDistance=sample.getDistanceBetween(clusters[i].clusterPoint, sample);
+			if(tempDistance>Distance){
+				Distance=tempDistance;
+				tempCluster=clusters[i];
+			}	
+		}
+		return tempCluster;
+	}
+	
+	public static Sample averageValueOfPointsInCluster(Cluster cluster, int dim){
+		ArrayList<Sample> origSamples=cluster.getSamples();
+		double[] Averages= new double[dim];
+		for(int j=0; j<dim; j++){
+			double temp=0;
+			for(int i=0; i<origSamples.size(); i++){
+				 temp+=origSamples.get(i).get(j);
+			}
+			Averages[j]=temp/origSamples.size();
+		}
+		Sample averageSample=new Sample(Averages);
+		return averageSample;
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
@@ -103,8 +128,7 @@ public class KMeans {
 
 		File file= new File(fileName);
 		readFile2(file);
-		
-		
+			
 
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);
@@ -113,11 +137,15 @@ public class KMeans {
 		int dataDimensions=(getNumDimensions(file));
 		
 		for(int j=0; j<k; j++){
-			clusters[j].createClusterPoint(dataDimensions);
-			
+			clusters[j]=new Cluster();
+			clusters[j].createClusterPoint(dataDimensions);	
 		}
 		
-		System.out.println("\n\nclusters= "+ clusters);
+		for(int i=0; i<originalData.samples.size(); i++){
+			for(int j=0; j<k; j++){
+				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));	
+			}		
+		}
 
 
 

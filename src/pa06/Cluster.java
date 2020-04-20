@@ -25,6 +25,10 @@ public class Cluster {
   public void setClusterPoint(Sample sample){
 	  clusterPoint=sample;
   }
+  
+  public Sample getClusterPoint(){
+	  return clusterPoint;
+  }
 
   public String toString(){
 	 String clusterString="\n\ncluster point is: " + clusterPoint.toString();
