@@ -21,6 +21,10 @@ public class Cluster {
   public void addSample(Sample sample){
 	  samples.add(sample);
   }
+  
+  public ArrayList<Sample> getSamples(){
+	  return samples;
+  }
 
   public void setClusterPoint(Sample sample){
 	  clusterPoint=sample;
@@ -29,6 +33,13 @@ public class Cluster {
   public Sample getClusterPoint(){
 	  return clusterPoint;
   }
+  
+  public void resetSamples(){
+	  for(int i=0; i<samples.size(); i++){
+		  samples.remove(0);
+	  }
+  }
+  
 
   public String toString(){
 	 String clusterString="\n\ncluster point is: " + clusterPoint.toString();
