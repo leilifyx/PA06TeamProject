@@ -35,9 +35,7 @@ public class Cluster {
   }
 
   public void resetSamples(){
-	  for(int i=0; i<samples.size(); i++){
-		  samples.remove(0);
-	  }
+	  samples.clear();
   }
 
 
