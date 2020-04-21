@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class KMeans{
 	static Cluster[] clusters;
 	static Cluster originalData;
-	
+
 
 
 	public KMeans() {
@@ -28,7 +28,7 @@ public class KMeans{
 				System.out.print(temp.get(l)+" ");
 			}
 			addDoublesToArray(tempLine, temp);
-			
+
 			System.out.println("in if");
 			Sample tempSample=new Sample(temp);
 			System.out.println("Sample= " + tempSample);
@@ -96,11 +96,11 @@ public class KMeans{
 			if(tempDistance>Distance){
 				Distance=tempDistance;
 				tempCluster=clusters[i];
-			}	
+			}
 		}
 		return tempCluster;
 	}
-	
+
 	public static Sample averageValueOfPointsInCluster(Cluster cluster, int dim){
 		ArrayList<Sample> origSamples=cluster.getSamples();
 		double[] Averages= new double[dim];
@@ -114,7 +114,7 @@ public class KMeans{
 		Sample averageSample=new Sample(Averages);
 		return averageSample;
 	}
-	
+
 	public static void main(String[] args) throws FileNotFoundException{
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
@@ -122,29 +122,34 @@ public class KMeans{
 		System.out.println("How many clusters?");
 		int k=scanning.nextInt();
 		clusters=new Cluster[k];
-		
-		
+
+
 		originalData=new Cluster();
 
 		File file= new File(fileName);
 		readFile2(file);
-			
+
 
 		Sample origin= createOrigin(file);
 		originalData.setClusterPoint(origin);
 		System.out.println(originalData);
-		
+
 		int dataDimensions=(getNumDimensions(file));
-		
+
 		for(int j=0; j<k; j++){
 			clusters[j]=new Cluster();
 			clusters[j].chooseClusterPoint(originalData, dataDimensions);	
 		}
-		
+
 		for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
+<<<<<<< HEAD
 				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));	
 			} 		
+=======
+				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));
+			}
+>>>>>>> 80a4375581c9479448778384e95beed3423c4b00
 		}
 
 
