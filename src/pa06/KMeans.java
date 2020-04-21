@@ -143,17 +143,11 @@ public class KMeans{
 
 		for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
-<<<<<<< HEAD
 				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));	
 			} 		
-=======
-				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));
-			}
->>>>>>> 80a4375581c9479448778384e95beed3423c4b00
+
 		}
 
-
-
 	}
-
 }
+
