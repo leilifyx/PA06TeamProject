@@ -88,6 +88,28 @@ public class KMeans{
 
 	}
 
+	public static void setClusterPoints(Cluster[] clusters, int k){
+		ArrayList<Sample> usedPoints=new ArrayList<Sample>();
+		for(int j=0; j<k; j++){
+			clusters[j]=new Cluster();
+			clusters[j].chooseClusterPoint(originalData);
+			boolean hasDuplicate=true;
+			while(hasDuplicate){
+				int i=0;
+				for(int l=0; l<usedPoints.size(); l++){
+					if(clusters[j].clusterPoint.equals(usedPoints.get(l))){
+						clusters[j].chooseClusterPoint(originalData);
+						i=1;
+					}
+				}
+				if(i!=1){
+					hasDuplicate=false;
+				}
+			}
+			usedPoints.add(clusters[j].clusterPoint);
+		}
+	}
+	
 	public static int findNearestSamplePoint(Sample sample, Cluster[] clusters){
 		//Cluster tempCluster=clusters[0];
 		int tempClusterNum=0;
@@ -120,12 +142,14 @@ public class KMeans{
 	}
 
 	public static void kmeans(Cluster[] clusters, int dimensions, int k){
+		Cluster[] tempClusters=new Cluster[k];
+		tempClusters=clusters;
+		for(int l=0; l<k; l++){
+			clusters[l].resetSamples();
+		}
 		for(int i=0; i<originalData.samples.size(); i++){
-			for(int j=0; j<k; j++){
-				int kWanted= findNearestSamplePoint(originalData.samples.get(i), clusters);
-				//clusters[kWanted].resetSamples();
-				clusters[kWanted].addSample(originalData.samples.get(i));	
-			} 		
+			int kWanted= findNearestSamplePoint(originalData.samples.get(i), tempClusters);
+			clusters[kWanted].addSample(originalData.samples.get(i));
 		}
 		for(int j=0; j<k; j++){
 			clusters[j].setClusterPoint(averageValueOfPointsInCluster(clusters[j], dimensions));	
@@ -155,16 +179,17 @@ public class KMeans{
 
 		int dataDimensions=(getNumDimensions(file));
 
-		for(int j=0; j<k; j++){
-			clusters[j]=new Cluster();
-			clusters[j].chooseClusterPoint(originalData, dataDimensions);	
-		}
+		setClusterPoints(clusters, k);
+		
+		
+		
+		
 		for(int j=0; j<k; j++){
 			System.out.print(clusters[j]);;	
 		}
 		
 
-		for(int i=0; i<originalData.samples.size(); i++){
+		/*for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
 				int kWanted= findNearestSamplePoint(originalData.samples.get(i), clusters);
 				clusters[kWanted].addSample(originalData.samples.get(i));	
@@ -173,7 +198,7 @@ public class KMeans{
 		
 		for(int j=0; j<k; j++){
 			clusters[j].setClusterPoint(averageValueOfPointsInCluster(clusters[j], dataDimensions));	
-		}
+		}*/
 		
 		
 		
@@ -182,11 +207,13 @@ public class KMeans{
 		}
 		
 		
-		//System.out.println("\n\noriginalData is"+originalData+"\nclusters are:");
-		/*for(int j=0; j<k; j++){
+		
+		System.out.println("\n\noriginalData is"+originalData+"\nclusters are:");
+		for(int j=0; j<k; j++){
 			System.out.print(clusters[j]);;	
 		}
-		*/
+		
+		
 		
 
 	}

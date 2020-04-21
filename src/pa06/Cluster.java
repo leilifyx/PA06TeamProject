@@ -50,13 +50,9 @@ public class Cluster {
 	  return clusterString;
   }
 
-  public void chooseClusterPoint(Cluster data, int dimensions){
-    int num=0;
-    while(true){
-        Random rand=new Random();
-        num=rand.nextInt(dimensions);
-        break;
-    }
+  public void chooseClusterPoint(Cluster data){
+    Random rand=new Random();
+    int num=rand.nextInt(data.samples.size());
     this.clusterPoint=data.samples.get(num);
   }
 }

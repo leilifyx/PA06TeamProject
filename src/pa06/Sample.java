@@ -50,6 +50,19 @@ public class Sample {
 		return this.sample.get(index);
 	}
 	
+	public boolean equals(Sample sample2){
+		boolean isEqual=true;
+		if(sample2.getSize()!=this.sample.size()){
+			isEqual=false;
+		}
+		for(int j=0; j<this.sample.size(); j++){
+			if(this.sample.get(j)!=sample2.getSampleVal(j)){
+				isEqual=false;
+			}
+		}
+		return isEqual;
+	}
+	
 	public static double getDistanceBetween(Sample a, Sample b){
 		int aSize=a.getSize();
 		int bSize=b.getSize();
