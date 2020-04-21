@@ -21,7 +21,7 @@ public class Cluster {
   public void addSample(Sample sample){
 	  samples.add(sample);
   }
-  
+
   public ArrayList<Sample> getSamples(){
 	  return samples;
   }
@@ -33,13 +33,13 @@ public class Cluster {
   public Sample getClusterPoint(){
 	  return clusterPoint;
   }
-  
+
   public void resetSamples(){
 	  for(int i=0; i<samples.size(); i++){
 		  samples.remove(0);
 	  }
   }
-  
+
 
   public String toString(){
 	 String clusterString="\n\ncluster point is: " + clusterPoint.toString();
@@ -51,8 +51,11 @@ public class Cluster {
   }
 
   public void chooseClusterPoint(Cluster data, int dimensions){
-    Random rand=new Random();
-    int num=rand.nextInt(dimensions);
+    while(true){
+        Random rand=new Random();
+        int num=rand.nextInt(dimensions);
+        break;
+    }
     this.clusterPoint=data.samples.get(num);
-  }  
+  }
 }
