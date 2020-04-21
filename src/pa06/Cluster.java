@@ -54,4 +54,5 @@ public class Cluster {
     Random rand=new Random();
     int num=rand.nextInt(dimensions);
     this.clusterPoint=data.samples.get(num);
+  }  
 }

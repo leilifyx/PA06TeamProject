@@ -138,13 +138,13 @@ public class KMeans{
 		
 		for(int j=0; j<k; j++){
 			clusters[j]=new Cluster();
-			clusters[j].createClusterPoint(dataDimensions);	
+			clusters[j].chooseClusterPoint(originalData, dataDimensions);	
 		}
 		
 		for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
 				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));	
-			}		
+			} 		
 		}
 
 
