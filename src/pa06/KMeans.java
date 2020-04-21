@@ -123,7 +123,7 @@ public class KMeans{
 		for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
 				int kWanted= findNearestSamplePoint(originalData.samples.get(i), clusters);
-				clusters[kWanted].resetSamples();
+				//clusters[kWanted].resetSamples();
 				clusters[kWanted].addSample(originalData.samples.get(i));	
 			} 		
 		}
@@ -159,6 +159,9 @@ public class KMeans{
 			clusters[j]=new Cluster();
 			clusters[j].chooseClusterPoint(originalData, dataDimensions);	
 		}
+		for(int j=0; j<k; j++){
+			System.out.print(clusters[j]);;	
+		}
 		
 
 		for(int i=0; i<originalData.samples.size(); i++){
@@ -179,10 +182,11 @@ public class KMeans{
 		}
 		
 		
-		System.out.println("\n\noriginalData is"+originalData+"\nclusters are:");
-		for(int j=0; j<k; j++){
+		//System.out.println("\n\noriginalData is"+originalData+"\nclusters are:");
+		/*for(int j=0; j<k; j++){
 			System.out.print(clusters[j]);;	
 		}
+		*/
 		
 
 	}
