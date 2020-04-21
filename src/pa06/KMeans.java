@@ -92,7 +92,7 @@ public class KMeans{
 		Cluster tempCluster=clusters[0];
 		double Distance=0;
 		for(int i=0; i<clusters.length; i++){
-			double tempDistance=sample.getDistanceBetween(clusters[i].clusterPoint, sample);
+			double tempDistance=sample.getDistanceBetween(clusters[i].getClusterPoint(), sample);
 			if(tempDistance>Distance){
 				Distance=tempDistance;
 				tempCluster=clusters[i];
@@ -107,7 +107,8 @@ public class KMeans{
 		for(int j=0; j<dim; j++){
 			double temp=0;
 			for(int i=0; i<origSamples.size(); i++){
-				 temp+=origSamples.get(i).get(j);
+				Sample tempSamp1=origSamples.get(i);
+				 temp+=tempSamp1.getSampleVal(j);
 			}
 			Averages[j]=temp/origSamples.size();
 		}
@@ -140,13 +141,19 @@ public class KMeans{
 			clusters[j]=new Cluster();
 			clusters[j].chooseClusterPoint(originalData, dataDimensions);	
 		}
+		
 
 		for(int i=0; i<originalData.samples.size(); i++){
 			for(int j=0; j<k; j++){
-				findNearestSamplePoint(originalData.samples.get(i), (clusters[j].getClusterPoint())).addSample(originalData.samples.get(i));	
+				findNearestSamplePoint(originalData.samples.get(i), clusters).addSample(originalData.samples.get(i));	
 			} 		
-
 		}
+		
+		for(int j=0; j<k; j++){
+			clusters[j].setClusterPoint(averageValueOfPointsInCluster(clusters[j], dataDimensions));	
+		}
+		
+		
 
 	}
 }

@@ -42,6 +42,10 @@ public class Sample {
 		return this.sample.size();
 	}
 	
+	public double getSampleVal(int pos){
+		return sample.get(pos);
+	}
+	
 	public double getValueAt(int index){
 		return this.sample.get(index);
 	}
