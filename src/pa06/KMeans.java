@@ -116,6 +116,19 @@ public class KMeans{
 		return averageSample;
 	}
 
+	public static void kmeans(Cluster[] clusters, int dimensions, int k){
+		for(int i=0; i<originalData.samples.size(); i++){
+			for(int j=0; j<k; j++){
+				findNearestSamplePoint(originalData.samples.get(i), clusters).addSample(originalData.samples.get(i));	
+			} 		
+		}
+		for(int j=0; j<k; j++){
+			clusters[j].setClusterPoint(averageValueOfPointsInCluster(clusters[j], dimensions));	
+		}
+		
+		
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
@@ -153,6 +166,15 @@ public class KMeans{
 			clusters[j].setClusterPoint(averageValueOfPointsInCluster(clusters[j], dataDimensions));	
 		}
 		
+		for(int i=0; i<100; i++){
+			kmeans(clusters, dataDimensions, k);
+		}
+		
+		
+		System.out.println("\n\n"+originalData);
+		for(int j=0; j<k; j++){
+			clusters[j].toString();	
+		}
 		
 
 	}
