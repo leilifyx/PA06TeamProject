@@ -9,13 +9,14 @@ public class KMeans{
 	static Cluster originalData;
 
 
-
+	//default constructor
 	public KMeans() {
 		// TODO Auto-generated constructor stub
 
 
 	}
 
+	//given file, reads file and adds samples to originalData
 	public static void readFile2(File file) throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
 		while(scan.hasNextLine()){
@@ -37,6 +38,7 @@ public class KMeans{
 
 	}
 
+	//returns dimensions of the samples
 	public static int getNumDimensions(File file)throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
 		ArrayList<Double> temp=new ArrayList<Double>();
@@ -47,6 +49,7 @@ public class KMeans{
 		return temp.size();
 	}
 
+	//adds the doubles from a string to an arraylist, used in readFile and createOrigin
 	public static void addDoublesToArray(String tempLine, ArrayList<Double> temp){
 		while(tempLine.length()>0){
 
@@ -72,6 +75,7 @@ public class KMeans{
 		}
 	}
 
+	//creates sample of the zero vector, which is of the correct dimensions and is set as being originalData's clusterPoint
 	public static Sample createOrigin(File file) throws FileNotFoundException{
 		Scanner scan=new Scanner(file);
 		ArrayList<Double> originArray=new ArrayList<Double>();
@@ -88,6 +92,7 @@ public class KMeans{
 
 	}
 
+	//ensure that there are no duplicates when creating the clusterPoints for clusters
 	public static void setClusterPoints(Cluster[] clusters, int k){
 		ArrayList<Sample> usedPoints=new ArrayList<Sample>();
 		for(int j=0; j<k; j++){
@@ -110,6 +115,7 @@ public class KMeans{
 		}
 	}
 	
+	//searches array of clusters to find which has clusterPoint that is closest to given Sample
 	public static int findNearestSamplePoint(Sample sample, Cluster[] clusters){
 		//Cluster tempCluster=clusters[0];
 		int tempClusterNum=0;
@@ -126,6 +132,7 @@ public class KMeans{
 		//return tempCluster;
 	}
 
+	//finds the average value of all the samples, eventually replaces clusterPoint
 	public static Sample averageValueOfPointsInCluster(Cluster cluster, int dim){
 		ArrayList<Sample> origSamples=cluster.getSamples();
 		double[] Averages= new double[dim];
@@ -141,6 +148,7 @@ public class KMeans{
 		return averageSample;
 	}
 
+	//resets arraylist samples of clusters and adds samples closest to each, reseting clusterPoint in each cluster to the average value of its samples
 	public static void kmeans(Cluster[] clusters, int dimensions, int k){
 		Cluster[] tempClusters=new Cluster[k];
 		tempClusters=clusters;
@@ -158,7 +166,15 @@ public class KMeans{
 		
 	}
 	
+	//takes in the name of a file and the preferred number of clusters,implements kmeans to put samples from file into seperate clusters 
 	public static void main(String[] args) throws FileNotFoundException{
+		/*
+		 * we have created our own small file, trial.txt , which we use to test this main method
+		 * it is in the PA06TeamProject already if you would like to use it (feel free to change the
+		 * data). We found that with data sets that were thousands of digits long, when we printed it 
+		 * out it was hard to tell whether or not it worked in putting them into clusters, so we made this
+		 * smaller file as a way to easily visualize what was happening. 
+		 */
 		Scanner scanning=new Scanner(System.in);
 		System.out.println("enter file's name");
 		String fileName=scanning.nextLine();
@@ -184,16 +200,20 @@ public class KMeans{
 		
 		
 		
-		for(int j=0; j<k; j++){
+		/*uncoment to see original cluster points
+		 for(int j=0; j<k; j++){
 			System.out.print(clusters[j]);;	
 		}
+		*/
 		
 		
-		
-		for(int i=0; i<2; i++){
+		/*100 is an arbitrarily large number chosen in hope that
+		 * after that many repetitions the samples will be properly split into clusters
+		 */
+		for(int i=0; i<100; i++){
 			kmeans(clusters, dataDimensions, k);
 			/*
-			 * to clusters[] through each step, uncomment
+			 * to see clusters[] go through each step, uncomment
 			 * for(int j=0; j<k; j++){
 				System.out.print(clusters[j]);;	
 			}*/
